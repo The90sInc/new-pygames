@@ -25,6 +25,13 @@ snake_speed = 15
 
 font_style = pygame.font.SysFont("bahnschrift", 25)
 score_font = pygame.font.SysFont("comicsansms", 35)
+large_text = pygame.font.SysFont("comicsansms", 25)
+
+
+    
+def Your_score(score):
+    value = score_font.render("Your Score: " + str(score), True, yellow)
+    dis.blit(value, [0,0])
 
 def our_snake(snake_block, snake_list):
     for x in snake_list:
@@ -37,6 +44,7 @@ def message(msg, color):
 def gameLoop():
     game_over = False
     game_close = False
+    game_play = False
     
     x1 = dis_width / 2
     y1 = dis_height / 2
@@ -90,7 +98,7 @@ def gameLoop():
         dis.fill(blue)
         pygame.draw.rect(dis, green, [foodx, foody, snake_block, snake_block])
         snake_Head = []
-        snake_Head.append(x1)
+        snake_Head.append(x1) 
         snake_Head.append(y1)
         snake_List.append(snake_Head)
         if len(snake_List) > Length_of_snake:
@@ -101,7 +109,7 @@ def gameLoop():
                 game_close = True
 
         our_snake(snake_block, snake_List)
-
+        Your_score(Length_of_snake - 1)
 
         pygame.display.update()
 
@@ -114,6 +122,5 @@ def gameLoop():
 
     pygame.quit()
     quit()
-
 
 gameLoop()
